@@ -5,9 +5,9 @@ export const getRestaurants = async () => {
   return response.json();
 };
 
-export const getMenuByRestaurant = async (restaurantId) => {
-  const response = await fetch(`${API_URL}/menu/restaurant/${restaurantId}`);
-  return response.json();
+export const getMenuByRestaurant = async (id) => {
+  const res = await fetch(`${API_URL}/menu/${id}`);
+  return res.json();
 };
 
 export const login = async (credentials) => {
