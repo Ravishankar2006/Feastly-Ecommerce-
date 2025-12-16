@@ -13,15 +13,13 @@ router.get('/', async (req, res) => {
 });
 
 // Get single restaurant
-router.get('/:id', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
-    const restaurant = await Restaurant.findById(req.params.id);
-    if (!restaurant) {
-      return res.status(404).json({ message: 'Restaurant not found' });
-    }
-    res.json(restaurant);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
+    const restaurants = await Restaurant.find();
+    res.json(restaurants);
+  } catch (err) {
+    console.error('Error in GET /api/restaurants:', err);  // <- add this
+    res.status(500).json({ message: 'Server error' });
   }
 });
 

@@ -1,17 +1,29 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+require('dotenv').config();
 
 const app = express();
 
-// Middleware
-app.use(cors({ origin: 'http://localhost:5173' }));
+// CORS
+app.use(cors()); // allows all origins; for prod you can restrict
+
 app.use(express.json());
 
 // MongoDB Connection
-mongoose.connect('mongodb://localhost:27017/feastly')
-.then(() => console.log('MongoDB Connected'))
-.catch(err => console.log(err));
+// For local dev, fallback to your localhost DB.
+// For Render, set MONGO_URI in environment variables.
+const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/feastly';
+
+mongoose
+  .connect(MONGO_URI)
+  .then(() => console.log('MongoDB Connected'))
+  .catch((err) => console.log('MongoDB connection error:', err));
+
+// Health check
+app.get('/', (req, res) => {
+  res.send('Backend is alive');
+});
 
 // Import Routes
 const restaurantRoutes = require('./routes/restaurantRoutes');
@@ -24,7 +36,7 @@ app.use('/api/menu', menuRoutes);
 app.use('/api/users', userRoutes);
 
 // Start Server
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
