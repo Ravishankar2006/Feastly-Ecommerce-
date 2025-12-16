@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:5000/api';
+const API_URL = "https://feastly-backend-hjko.onrender.com";
 
 export const getRestaurants = async () => {
   const response = await fetch(`${API_URL}/restaurants`);
