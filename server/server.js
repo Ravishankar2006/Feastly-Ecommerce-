@@ -5,7 +5,10 @@ const cors = require('cors');
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: 'https://feastly-ecommerce-nwo3pd6um-ravishankars-projects-3f7c31df.vercel.app', // Replace with YOUR Vercel URL
+  credentials: true
+}));
 app.use(express.json());
 
 // MongoDB Connection
