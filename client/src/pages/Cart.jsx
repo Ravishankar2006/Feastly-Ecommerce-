@@ -62,7 +62,10 @@ const Cart = () => {
         <div style={styles.summary}>
           <h2 style={styles.totalText}>Total Amount</h2>
           <h1 style={styles.totalAmount}>₹{getTotal()}</h1>
-          <button style={styles.checkoutBtn}>
+          <button 
+            style={styles.checkoutBtn}
+            onClick={() => navigate('/checkout')}
+          >
             Proceed to Checkout 🚀
           </button>
         </div>

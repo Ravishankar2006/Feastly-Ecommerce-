@@ -5,20 +5,36 @@ import Signup from './pages/Signup';
 import RestaurantMenu from './pages/RestaurantMenu';
 import Cart from './pages/Cart';
 import About from './pages/About';
+import Payment from './pages/Payment';
+import Checkout from './pages/Checkout';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 
 function App() {
   return (
     <Router>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} /> 
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/restaurant/:id" element={<RestaurantMenu />} />
-        <Route path="/cart" element={<Cart />} />
-      </Routes>
+      <div className="min-h-screen flex flex-col">
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/*" element={
+            <>
+              <Navbar />
+              <main className="flex-grow">
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/about" element={<About />} /> 
+                  <Route path="/restaurant/:id" element={<RestaurantMenu />} />
+                  <Route path="/cart" element={<Cart />} />
+                  <Route path="/checkout" element={<Checkout />} />
+                  <Route path="/payment" element={<Payment />} />
+                </Routes>
+              </main>
+              <Footer />
+            </>
+          } />
+        </Routes>
+      </div>
     </Router>
   );
 }
