@@ -7,6 +7,7 @@ import Cart from './pages/Cart';
 import About from './pages/About';
 import Payment from './pages/Payment';
 import Checkout from './pages/Checkout';
+import Orders from './pages/Orders';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
@@ -28,6 +29,7 @@ function App() {
                   <Route path="/cart" element={<Cart />} />
                   <Route path="/checkout" element={<Checkout />} />
                   <Route path="/payment" element={<Payment />} />
+                  <Route path="/orders" element={<Orders />} />
                 </Routes>
               </main>
               <Footer />

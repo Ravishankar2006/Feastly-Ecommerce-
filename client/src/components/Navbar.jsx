@@ -1,9 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    const userData = localStorage.getItem('user');
+    if (token && userData) {
+      setIsLoggedIn(true);
+      setUser(JSON.parse(userData));
+    }
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    setIsLoggedIn(false);
+    setUser(null);
+    navigate('/');
+  };
 
   return (
     <nav className="glass-effect sticky top-0 z-50 px-6 py-4">
@@ -40,12 +59,36 @@ const Navbar = () => {
             <span className="text-lg">🛒</span>
             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-200 group-hover:w-full transition-all duration-300"></span>
           </Link>
-          <button 
-            onClick={() => navigate('/login')} 
-            className="bg-gradient-to-r from-orange-400 to-pink-500 hover:from-orange-500 hover:to-pink-600 text-white font-semibold px-6 py-2 rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300"
+          <Link 
+            to="/orders" 
+            className="text-white hover:text-blue-200 font-medium transition-colors duration-200 relative group"
           >
-            Login
-          </button>
+            Orders
+            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-200 group-hover:w-full transition-all duration-300"></span>
+          </Link>
+          {isLoggedIn ? (
+            <div className="relative group">
+              <button className="flex items-center space-x-2 bg-gradient-to-r from-green-400 to-blue-500 hover:from-green-500 hover:to-blue-600 text-white font-semibold px-4 py-2 rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300">
+                <span className="text-lg">👤</span>
+                <span>{user?.name || 'Profile'}</span>
+              </button>
+              <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                <button 
+                  onClick={handleLogout}
+                  className="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg"
+                >
+                  Logout
+                </button>
+              </div>
+            </div>
+          ) : (
+            <button 
+              onClick={() => navigate('/login')} 
+              className="bg-gradient-to-r from-orange-400 to-pink-500 hover:from-orange-500 hover:to-pink-600 text-white font-semibold px-6 py-2 rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300"
+            >
+              Login
+            </button>
+          )}
         </div>
 
         {/* Mobile menu button */}
@@ -85,15 +128,39 @@ const Navbar = () => {
               <span>Cart</span>
               <span>🛒</span>
             </Link>
-            <button 
-              onClick={() => {
-                navigate('/login');
-                setIsMenuOpen(false);
-              }} 
-              className="bg-gradient-to-r from-orange-400 to-pink-500 text-white font-semibold py-2 px-4 rounded-full mt-2"
+            <Link 
+              to="/orders" 
+              className="text-white hover:text-blue-200 font-medium py-2 px-4 rounded-lg hover:bg-white hover:bg-opacity-10 transition-all duration-200"
+              onClick={() => setIsMenuOpen(false)}
             >
-              Login
-            </button>
+              Orders
+            </Link>
+            {isLoggedIn ? (
+              <div className="space-y-2">
+                <div className="text-white font-semibold py-2 px-4">
+                  👤 {user?.name || 'Profile'}
+                </div>
+                <button 
+                  onClick={() => {
+                    handleLogout();
+                    setIsMenuOpen(false);
+                  }} 
+                  className="bg-red-500 text-white font-semibold py-2 px-4 rounded-full w-full"
+                >
+                  Logout
+                </button>
+              </div>
+            ) : (
+              <button 
+                onClick={() => {
+                  navigate('/login');
+                  setIsMenuOpen(false);
+                }} 
+                className="bg-gradient-to-r from-orange-400 to-pink-500 text-white font-semibold py-2 px-4 rounded-full mt-2"
+              >
+                Login
+              </button>
+            )}
           </div>
         </div>
       )}

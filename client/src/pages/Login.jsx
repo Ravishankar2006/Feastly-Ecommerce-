@@ -20,7 +20,7 @@ const Login = () => {
       if (data.token) {
         localStorage.setItem('token', data.token);
         localStorage.setItem('user', JSON.stringify(data.user));
-        navigate('/');
+        window.location.href = '/'; // Redirect to home page
       } else {
         setError(data.message || 'Login failed');
       }

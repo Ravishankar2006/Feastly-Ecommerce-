@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer className="bg-gray-900 text-white">
       <div className="max-w-7xl mx-auto px-6 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Brand Section */}
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center space-x-2 mb-4">
@@ -38,17 +38,6 @@ const Footer = () => {
                 </svg>
               </a>
             </div>
-          </div>
-
-          {/* Quick Links */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
-            <ul className="space-y-2">
-              <li><Link to="/" className="text-gray-400 hover:text-white transition-colors duration-200">Home</Link></li>
-              <li><Link to="/about" className="text-gray-400 hover:text-white transition-colors duration-200">About</Link></li>
-              <li><Link to="/restaurants" className="text-gray-400 hover:text-white transition-colors duration-200">Restaurants</Link></li>
-              <li><Link to="/contact" className="text-gray-400 hover:text-white transition-colors duration-200">Contact</Link></li>
-            </ul>
           </div>
 
           {/* Support */}

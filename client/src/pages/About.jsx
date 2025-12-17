@@ -205,12 +205,12 @@ const About = () => {
             Join millions of satisfied customers and discover why Feastly is the 
             multiverse's favorite food delivery platform.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-orange-600 font-bold py-4 px-8 rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
+          <div className="flex justify-center">
+            <button 
+              onClick={() => window.location.href = '/'}
+              className="bg-white text-orange-600 font-bold py-4 px-8 rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
+            >
               Order Now
-            </button>
-            <button className="border-2 border-white text-white font-bold py-4 px-8 rounded-xl hover:bg-white hover:text-orange-600 transition-all duration-300">
-              Learn More
             </button>
           </div>
         </div>

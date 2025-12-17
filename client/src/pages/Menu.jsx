@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const Menu = ({ restaurantId }) => {
   const [menuItems, setMenuItems] = useState([]);
+  const [toast, setToast] = useState(null);
   const { addToCart, cart } = useCart();
   const navigate = useNavigate();
 
@@ -23,8 +24,8 @@ const Menu = ({ restaurantId }) => {
 
   const handleAddToCart = (item) => {
     addToCart(item);
-    // Visual feedback
-    alert("✅ Added to cart!");
+    setToast(`${item.name} added to cart!`);
+    setTimeout(() => setToast(null), 3000);
   };
 
   return (
@@ -58,6 +59,13 @@ const Menu = ({ restaurantId }) => {
           </div>
         ))}
       </div>
+      
+      {/* Toast Notification */}
+      {toast && (
+        <div style={styles.toast}>
+          ✅ {toast}
+        </div>
+      )}
     </div>
   );
 };
@@ -158,6 +166,18 @@ const styles = {
     cursor: "pointer",
     fontSize: "1rem",
     fontWeight: "bold",
+  },
+  toast: {
+    position: "fixed",
+    top: "20px",
+    right: "20px",
+    backgroundColor: "#4CAF50",
+    color: "white",
+    padding: "1rem 1.5rem",
+    borderRadius: "10px",
+    boxShadow: "0 4px 15px rgba(0,0,0,0.2)",
+    zIndex: 1000,
+    animation: "slideIn 0.3s ease-out"
   },
 };
 

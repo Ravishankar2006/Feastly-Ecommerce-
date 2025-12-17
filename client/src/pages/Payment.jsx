@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useCart } from '../context/CartContext';
 
 const Payment = () => {
   const navigate = useNavigate();
+  const { placeOrder } = useCart();
   const [paymentMethod, setPaymentMethod] = useState('card');
   const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
   const [formData, setFormData] = useState({
     cardNumber: '',
     expiryDate: '',
@@ -26,10 +29,29 @@ const Payment = () => {
     // Simulate payment processing
     setTimeout(() => {
       setLoading(false);
-      alert('Payment successful! Order placed.');
-      navigate('/');
+      setSuccess(true);
+      placeOrder();
+      
+      // Show success animation then redirect
+      setTimeout(() => {
+        navigate('/orders');
+      }, 3000);
     }, 2000);
   };
+
+  if (success) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-green-500 via-blue-600 to-purple-600 flex items-center justify-center">
+        <div className="text-center animate-bounce-in">
+          <div className="text-8xl mb-6 animate-bounce">✅</div>
+          <h1 className="text-4xl font-bold text-white mb-4">Payment Successful!</h1>
+          <p className="text-xl text-green-100 mb-6">Your order has been placed successfully</p>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white mx-auto"></div>
+          <p className="text-white mt-4">Redirecting to your orders...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-600 via-purple-600 to-purple-800 py-12">
