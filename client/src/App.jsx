@@ -9,7 +9,6 @@ import Payment from './pages/Payment';
 import Checkout from './pages/Checkout';
 import Orders from './pages/Orders';
 import Navbar from './components/Navbar';
-import Footer from './components/Footer';
 
 function App() {
   return (
@@ -32,7 +31,6 @@ function App() {
                   <Route path="/orders" element={<Orders />} />
                 </Routes>
               </main>
-              <Footer />
             </>
           } />
         </Routes>

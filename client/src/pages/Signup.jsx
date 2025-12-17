@@ -41,8 +41,14 @@ const Signup = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-purple-600 to-purple-800 flex items-center justify-center px-6 py-12">
-      <div className="max-w-md w-full">
+    <div className="min-h-screen bg-gradient-to-br from-[#0a0a0a] via-[#1a1a1a] to-[#2a2a2a] flex items-center justify-center px-6 py-12 relative overflow-hidden">
+      {/* Animated Background Particles */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-[#00d4ff]/10 rounded-full blur-3xl animate-float"></div>
+        <div className="absolute top-40 right-20 w-96 h-96 bg-[#8b5cf6]/10 rounded-full blur-3xl animate-float" style={{animationDelay: '1s'}}></div>
+        <div className="absolute bottom-20 left-1/3 w-80 h-80 bg-[#f472b6]/10 rounded-full blur-3xl animate-float" style={{animationDelay: '2s'}}></div>
+      </div>
+      <div className="max-w-md w-full relative z-10">
         {/* Header */}
         <div className="text-center mb-8">
           <div className="text-4xl mb-4">🍽️</div>
@@ -51,7 +57,7 @@ const Signup = () => {
         </div>
 
         {/* Signup Form */}
-        <div className="bg-white bg-opacity-10 backdrop-blur-lg rounded-2xl p-8 shadow-2xl border border-white border-opacity-20">
+        <div className="bg-[#1a1a1a]/80 backdrop-blur-xl rounded-2xl p-8 shadow-2xl border border-[#00d4ff]/20">
           {error && (
             <div className="mb-6 p-4 bg-red-500 bg-opacity-20 border border-red-400 rounded-xl text-red-100 text-sm animate-slide-up">
               {error}

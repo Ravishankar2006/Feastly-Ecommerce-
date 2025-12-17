@@ -25,6 +25,12 @@ const Cart = () => {
 
   return (
     <div style={styles.container}>
+      {/* Animated Background */}
+      <div style={styles.backgroundEffect}>
+        <div style={{...styles.floatingOrb, top: '5%', left: '5%', background: '#00d4ff', animationDelay: '0s'}}></div>
+        <div style={{...styles.floatingOrb, top: '60%', right: '10%', background: '#8b5cf6', animationDelay: '2s'}}></div>
+        <div style={{...styles.floatingOrb, bottom: '10%', left: '50%', background: '#f472b6', animationDelay: '4s'}}></div>
+      </div>
       <h1 style={styles.title}>🛒 Your Cart</h1>
       <div style={styles.content}>
         <div style={styles.items}>
@@ -78,17 +84,41 @@ const styles = {
   container: {
     padding: '2rem',
     minHeight: '100vh',
-    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+    background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #2a2a2a 100%)',
+    position: 'relative',
+    overflow: 'hidden'
+  },
+  backgroundEffect: {
+    position: 'absolute',
+    inset: 0,
+    pointerEvents: 'none',
+    zIndex: 0
+  },
+  floatingOrb: {
+    position: 'absolute',
+    width: '300px',
+    height: '300px',
+    borderRadius: '50%',
+    filter: 'blur(80px)',
+    opacity: 0.12,
+    animation: 'float 8s ease-in-out infinite'
   },
   title: {
     color: 'white',
     fontSize: '2.5rem',
     marginBottom: '2rem',
-    textAlign: 'center'
+    textAlign: 'center',
+    background: 'linear-gradient(to right, #00d4ff, #8b5cf6)',
+    WebkitBackgroundClip: 'text',
+    WebkitTextFillColor: 'transparent',
+    position: 'relative',
+    zIndex: 1
   },
   content: {
     maxWidth: '900px',
-    margin: '0 auto'
+    margin: '0 auto',
+    position: 'relative',
+    zIndex: 1
   },
   items: {
     marginBottom: '2rem'
@@ -98,10 +128,13 @@ const styles = {
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: '1.5rem',
-    backgroundColor: '#fff',
+    background: 'rgba(26, 26, 26, 0.6)',
+    backdropFilter: 'blur(10px)',
     borderRadius: '15px',
     marginBottom: '1rem',
-    boxShadow: '0 4px 15px rgba(0,0,0,0.1)'
+    border: '1px solid rgba(0, 212, 255, 0.3)',
+    boxShadow: '0 0 20px rgba(0, 212, 255, 0.1)',
+    transition: 'all 0.3s ease'
   },
   itemInfo: {
     flex: 1
@@ -109,10 +142,10 @@ const styles = {
   itemName: {
     fontSize: '1.3rem',
     marginBottom: '0.5rem',
-    color: '#333'
+    color: '#fff'
   },
   itemPrice: {
-    color: '#666',
+    color: '#9ca3af',
     fontSize: '0.9rem'
   },
   controls: {
@@ -123,77 +156,85 @@ const styles = {
   qtyBtn: {
     width: '35px',
     height: '35px',
-    backgroundColor: '#667eea',
-    color: 'white',
-    border: 'none',
+    backgroundColor: '#2a2a2a',
+    color: '#00d4ff',
+    border: '1px solid #00d4ff',
     borderRadius: '50%',
     cursor: 'pointer',
     fontSize: '1.2rem',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    transition: 'all 0.3s ease'
   },
   quantity: {
     fontSize: '1.3rem',
     fontWeight: 'bold',
     minWidth: '30px',
-    textAlign: 'center'
+    textAlign: 'center',
+    color: '#fff'
   },
   subtotal: {
     fontSize: '1.2rem',
     fontWeight: 'bold',
-    color: '#ff6347',
+    color: '#00d4ff',
     minWidth: '80px',
     textAlign: 'right'
   },
   removeBtn: {
     padding: '0.5rem 1rem',
-    backgroundColor: '#ff4444',
-    color: 'white',
-    border: 'none',
+    backgroundColor: '#2a2a2a',
+    color: '#f472b6',
+    border: '1px solid #f472b6',
     borderRadius: '10px',
     cursor: 'pointer',
-    fontSize: '1.2rem'
+    fontSize: '1.2rem',
+    transition: 'all 0.3s ease'
   },
   summary: {
-    backgroundColor: '#fff',
+    background: 'rgba(26, 26, 26, 0.6)',
+    backdropFilter: 'blur(10px)',
     padding: '2rem',
     borderRadius: '15px',
     textAlign: 'center',
-    boxShadow: '0 4px 15px rgba(0,0,0,0.1)'
+    border: '1px solid rgba(139, 92, 246, 0.4)',
+    boxShadow: '0 0 30px rgba(139, 92, 246, 0.2)'
   },
   totalText: {
-    color: '#666',
+    color: '#9ca3af',
     marginBottom: '0.5rem'
   },
   totalAmount: {
-    color: '#ff6347',
+    color: '#00d4ff',
     fontSize: '3rem',
     marginBottom: '1.5rem'
   },
   checkoutBtn: {
     padding: '1rem 3rem',
-    backgroundColor: '#ff6347',
+    background: 'linear-gradient(to right, #00d4ff, #8b5cf6)',
     color: 'white',
     border: 'none',
     borderRadius: '30px',
     cursor: 'pointer',
     fontSize: '1.2rem',
     fontWeight: 'bold',
-    width: '100%'
+    width: '100%',
+    transition: 'all 0.3s ease'
   },
   emptyContainer: {
     minHeight: '100vh',
-    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+    background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #2a2a2a 100%)',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     padding: '2rem'
   },
   emptyCard: {
-    backgroundColor: '#fff',
+    background: 'rgba(26, 26, 26, 0.6)',
+    backdropFilter: 'blur(10px)',
     padding: '3rem',
     borderRadius: '20px',
     textAlign: 'center',
-    boxShadow: '0 4px 20px rgba(0,0,0,0.2)'
+    border: '1px solid rgba(0, 212, 255, 0.3)',
+    boxShadow: '0 0 30px rgba(0, 212, 255, 0.2)'
   },
   emptyIcon: {
     fontSize: '5rem',
@@ -203,16 +244,16 @@ const styles = {
   emptyTitle: {
     fontSize: '2rem',
     marginBottom: '1rem',
-    color: '#333'
+    color: '#fff'
   },
   emptyText: {
-    color: '#666',
+    color: '#9ca3af',
     marginBottom: '2rem',
     fontSize: '1.1rem'
   },
   browseBtn: {
     padding: '1rem 2rem',
-    backgroundColor: '#ff6347',
+    background: 'linear-gradient(to right, #00d4ff, #8b5cf6)',
     color: 'white',
     border: 'none',
     borderRadius: '25px',

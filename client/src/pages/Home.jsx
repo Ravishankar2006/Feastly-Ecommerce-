@@ -69,19 +69,26 @@ const Home = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-purple-600 to-purple-800">
+    <div className="min-h-screen bg-gradient-to-br from-[#0a0a0a] via-[#1a1a1a] to-[#2a2a2a] relative overflow-hidden">
+      {/* Animated Background Particles */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-[#00d4ff]/10 rounded-full blur-3xl animate-float"></div>
+        <div className="absolute top-40 right-20 w-96 h-96 bg-[#8b5cf6]/10 rounded-full blur-3xl animate-float" style={{animationDelay: '1s'}}></div>
+        <div className="absolute bottom-20 left-1/3 w-80 h-80 bg-[#f472b6]/10 rounded-full blur-3xl animate-float" style={{animationDelay: '2s'}}></div>
+      </div>
+
       {/* Hero Section */}
       <div className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-black bg-opacity-20"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#00d4ff]/5 to-transparent animate-gradient-shift" style={{backgroundSize: '200% 200%'}}></div>
         <div className="relative max-w-7xl mx-auto px-6 py-20 text-center">
           <div className="animate-fade-in">
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight">
               Welcome to{' '}
-              <span className="bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#00d4ff] via-[#8b5cf6] to-[#f472b6] bg-clip-text text-transparent animate-gradient-shift" style={{backgroundSize: '200% auto'}}>
                 Feastly
               </span>
             </h1>
-            <p className="text-xl md:text-2xl text-blue-100 mb-8 max-w-2xl mx-auto">
+            <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto animate-pulse-glow">
               🌎 Multiverse's No 1 Food Delivery App
             </p>
 
@@ -100,7 +107,7 @@ const Home = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             {debouncedQuery ? `🔍 Search Results` : `✨ Featured Restaurants`}
           </h2>
-          <p className="text-blue-100 text-lg max-w-2xl mx-auto">
+          <p className="text-gray-300 text-lg max-w-2xl mx-auto">
             {debouncedQuery 
               ? `Showing results for "${debouncedQuery}"`
               : 'Discover amazing restaurants and satisfy your cravings with just a few clicks'
@@ -188,7 +195,7 @@ const Home = () => {
       </div>
 
       {/* Features Section */}
-      <div className="bg-white bg-opacity-10 backdrop-blur-lg py-20">
+      <div className="bg-[#0a0a0a]/60 backdrop-blur-xl py-20 border-t border-[#00d4ff]/20">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
@@ -199,17 +206,17 @@ const Home = () => {
             <div className="text-center group">
               <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">🚀</div>
               <h3 className="text-xl font-semibold text-white mb-2">Lightning Fast</h3>
-              <p className="text-blue-100">Get your food delivered in 30 minutes or less</p>
+              <p className="text-gray-300">Get your food delivered in 30 minutes or less</p>
             </div>
             <div className="text-center group">
-              <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">🎆</div>
+              <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300 animate-float">🎆</div>
               <h3 className="text-xl font-semibold text-white mb-2">Premium Quality</h3>
-              <p className="text-blue-100">Only the finest restaurants and freshest ingredients</p>
+              <p className="text-gray-300">Only the finest restaurants and freshest ingredients</p>
             </div>
             <div className="text-center group">
               <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">📱</div>
               <h3 className="text-xl font-semibold text-white mb-2">Easy Ordering</h3>
-              <p className="text-blue-100">Simple, intuitive interface for seamless ordering</p>
+              <p className="text-gray-300">Simple, intuitive interface for seamless ordering</p>
             </div>
           </div>
         </div>

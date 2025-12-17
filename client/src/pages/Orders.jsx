@@ -53,8 +53,8 @@ const Orders = () => {
 
   if (orders.length === 0) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-600 via-purple-600 to-purple-800 flex items-center justify-center px-6">
-        <div className="bg-white bg-opacity-10 backdrop-blur-lg rounded-2xl p-8 shadow-2xl border border-white border-opacity-20 text-center">
+      <div className="min-h-screen bg-gradient-to-br from-[#0a0a0a] via-[#1a1a1a] to-[#2a2a2a] flex items-center justify-center px-6">
+        <div className="bg-[#1a1a1a]/80 backdrop-blur-xl rounded-2xl p-8 shadow-2xl border border-[#00d4ff]/20 text-center">
           <div className="text-6xl mb-4">📦</div>
           <h2 className="text-2xl font-bold text-white mb-4">No Orders Yet</h2>
           <p className="text-blue-100 mb-6">Start ordering some delicious food!</p>
@@ -70,13 +70,19 @@ const Orders = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-purple-600 to-purple-800 py-12">
-      <div className="max-w-4xl mx-auto px-6">
+    <div className="min-h-screen bg-gradient-to-br from-[#0a0a0a] via-[#1a1a1a] to-[#2a2a2a] py-12 relative overflow-hidden">
+      {/* Animated Background Particles */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-[#00d4ff]/10 rounded-full blur-3xl animate-float"></div>
+        <div className="absolute top-40 right-20 w-96 h-96 bg-[#8b5cf6]/10 rounded-full blur-3xl animate-float" style={{animationDelay: '1s'}}></div>
+        <div className="absolute bottom-20 left-1/3 w-80 h-80 bg-[#f472b6]/10 rounded-full blur-3xl animate-float" style={{animationDelay: '2s'}}></div>
+      </div>
+      <div className="max-w-4xl mx-auto px-6 relative z-10">
         <h1 className="text-4xl font-bold text-white text-center mb-8">Your Orders</h1>
         
         <div className="space-y-6">
           {orders.map((order) => (
-            <div key={order.id} className="bg-white bg-opacity-10 backdrop-blur-lg rounded-2xl p-6 shadow-2xl border border-white border-opacity-20">
+            <div key={order.id} className="bg-[#1a1a1a]/80 backdrop-blur-xl rounded-2xl p-6 shadow-2xl border border-[#00d4ff]/20">
               <div className="flex justify-between items-start mb-4">
                 <div>
                   <h3 className="text-xl font-bold text-white">Order #{order.id}</h3>
@@ -101,7 +107,7 @@ const Orders = () => {
               
               <div className="space-y-3">
                 {order.items.map((item, index) => (
-                  <div key={index} className="flex justify-between items-center bg-white bg-opacity-10 rounded-lg p-3">
+                  <div key={index} className="flex justify-between items-center bg-[#2a2a2a]/60 rounded-lg p-3">
                     <div>
                       <span className="text-white font-medium">{item.name}</span>
                       <span className="text-blue-200 ml-2">x{item.quantity}</span>

@@ -4,10 +4,14 @@ import { useCart } from '../context/CartContext';
 
 const Payment = () => {
   const navigate = useNavigate();
-  const { placeOrder } = useCart();
+  const { placeOrder, getTotal } = useCart();
   const [paymentMethod, setPaymentMethod] = useState('card');
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  
+  const subtotal = parseFloat(getTotal());
+  const deliveryFee = 2.99;
+  const total = subtotal + deliveryFee;
   const [formData, setFormData] = useState({
     cardNumber: '',
     expiryDate: '',
@@ -41,7 +45,7 @@ const Payment = () => {
 
   if (success) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-green-500 via-blue-600 to-purple-600 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-[#10b981] via-[#00d4ff] to-[#8b5cf6] flex items-center justify-center">
         <div className="text-center animate-bounce-in">
           <div className="text-8xl mb-6 animate-bounce">✅</div>
           <h1 className="text-4xl font-bold text-white mb-4">Payment Successful!</h1>
@@ -54,9 +58,15 @@ const Payment = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-purple-600 to-purple-800 py-12">
-      <div className="max-w-2xl mx-auto px-6">
-        <div className="bg-white bg-opacity-10 backdrop-blur-lg rounded-2xl p-8 shadow-2xl border border-white border-opacity-20">
+    <div className="min-h-screen bg-gradient-to-br from-[#0a0a0a] via-[#1a1a1a] to-[#2a2a2a] py-12 relative overflow-hidden">
+      {/* Animated Background Particles */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-[#00d4ff]/10 rounded-full blur-3xl animate-float"></div>
+        <div className="absolute top-40 right-20 w-96 h-96 bg-[#8b5cf6]/10 rounded-full blur-3xl animate-float" style={{animationDelay: '1s'}}></div>
+        <div className="absolute bottom-20 left-1/3 w-80 h-80 bg-[#f472b6]/10 rounded-full blur-3xl animate-float" style={{animationDelay: '2s'}}></div>
+      </div>
+      <div className="max-w-2xl mx-auto px-6 relative z-10">
+        <div className="bg-[#1a1a1a]/80 backdrop-blur-xl rounded-2xl p-8 shadow-2xl border border-[#00d4ff]/20">
           <h1 className="text-3xl font-bold text-white mb-8 text-center">Payment</h1>
           
           {/* Payment Methods */}
@@ -200,15 +210,15 @@ const Payment = () => {
             <div className="space-y-2 text-white">
               <div className="flex justify-between">
                 <span>Subtotal</span>
-                <span>$24.99</span>
+                <span>${subtotal.toFixed(2)}</span>
               </div>
               <div className="flex justify-between">
                 <span>Delivery Fee</span>
-                <span>$2.99</span>
+                <span>${deliveryFee.toFixed(2)}</span>
               </div>
               <div className="flex justify-between font-bold text-lg pt-2 border-t border-white border-opacity-20">
                 <span>Total</span>
-                <span>$27.98</span>
+                <span>${total.toFixed(2)}</span>
               </div>
             </div>
           </div>
